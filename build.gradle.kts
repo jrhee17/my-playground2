@@ -1,6 +1,7 @@
 plugins {
     id("java")
     kotlin("jvm") version "1.9.22"
+    id("io.spring.dependency-management") version "1.1.4"
 }
 
 group = "com.github.jrhee17"
@@ -8,6 +9,13 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("com.linecorp.armeria:armeria-bom:1.27.0")
+        mavenBom("com.linecorp.centraldogma:centraldogma-bom:0.61.1")
+    }
 }
 
 dependencies {
@@ -18,7 +26,7 @@ dependencies {
         "armeria-kotlin",
         "armeria-junit5",
         ).forEach {
-        implementation("com.linecorp.armeria:${it}:1.27.2")
+        implementation("com.linecorp.armeria:${it}")
     }
     implementation("com.expediagroup:graphql-kotlin-schema-generator:7.0.2")
 

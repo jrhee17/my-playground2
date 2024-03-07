@@ -1,0 +1,9 @@
+server:
+  shutdown: graceful
+  port: -1
+
+armeria:
+  health-check-path: /monitor/l7check
+  ports:
+    - port: 8080
+      protocols: HTTP
