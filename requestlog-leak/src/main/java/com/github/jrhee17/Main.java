@@ -69,6 +69,7 @@ public class Main {
                                         return HttpResponse.of(200);
                                     })
                                     .service(GrpcService.builder()
+                                                        .useBlockingTaskExecutor(true)
                                                         .addService(new TestServiceImplBase() {
                                                             @Override
                                                             public void hello(HelloRequest request,

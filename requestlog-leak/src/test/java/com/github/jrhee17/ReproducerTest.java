@@ -24,7 +24,7 @@ class ReproducerTest {
     void trySendRequests() {
         final AtomicInteger successCount = new AtomicInteger();
         final AtomicInteger failCount = new AtomicInteger();
-        final int requestCount = 70_000;
+        final int requestCount = 50_000;
         final TestServiceFutureStub stub = GrpcClients.newClient("http://localhost:8080",
                                                                  TestServiceFutureStub.class);
         for (int i = 0; i < requestCount; i++) {
