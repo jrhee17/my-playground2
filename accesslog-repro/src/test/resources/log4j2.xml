@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] [%p] %c{1} - %m%n%ex"/>
+    </Console>
+    <RollingFile name="RollingAppender" fileName="aaa.log" filePattern="aaa.log.%i">
+      <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] [%p] %c{1} - %m%n%ex"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="2GB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="10"/>
+    </RollingFile>
+    <RollingFile name="AccessLogAppender" fileName="access.log" filePattern="access.log.%i">
+      <PatternLayout pattern="%m%n"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="100MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="10"/>
+    </RollingFile>
+  </Appenders>
+  <Loggers>
+    <Root level="info">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="RollingAppender"/>
+    </Root>
+    <Logger name="AccessLogger" level="info" additivity="false">
+      <AppenderRef ref="AccessLogAppender"/>
+    </Logger>
+  </Loggers>
+</Configuration>
